@@ -1,0 +1,20 @@
+name: Frends.IbmMaximo.Request Main
+
+on:
+  push:
+    branches:    
+      - main
+    paths:
+      - 'Frends.IbmMaximo.Request/**'
+      - 'Frends.IbmMaximo.Request.Tests/**'
+  workflow_dispatch:
+  
+
+jobs:
+  build:
+    uses: FrendsPlatform/FrendsTasks/.github/workflows/build_main.yml@main
+    with:
+      workdir: Frends.IbmMaximo.Request
+    secrets:
+      badge_service_api_key: ${{ secrets.BADGE_SERVICE_API_KEY }}
+      
