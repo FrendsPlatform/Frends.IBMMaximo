@@ -52,7 +52,7 @@ public static class IbmMaximo
                 return await UpdateServiceRequest(input, cancellationToken);
             case RequestTypeChoose.DeleteServiceRequest:
                 return await DeleteServiceRequest(input, cancellationToken);
-            default: 
+            default:
                 return new Result(false, null, $"Unsupported request type: {input.RequestType}");
         }
     }
