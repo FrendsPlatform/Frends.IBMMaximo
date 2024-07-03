@@ -26,7 +26,7 @@ public enum RequestTypeChoose
     /// </summary>
     GetWorkOrder,
     /// <summary>
-    /// Updated work order with given ID.
+    /// Update work order with given ID.
     /// </summary>
     UpdateWorkOrder,
     /// <summary>
@@ -40,7 +40,7 @@ public enum RequestTypeChoose
     GetServiceRequest,
 
     /// <summary>
-    /// Updated service request with given ID.
+    /// Update service request with given ID.
     /// </summary>
     UpdateServiceRequest,
 

@@ -16,7 +16,6 @@ namespace Frends.IbmMaximo.Request.Tests;
 class Tests
 {
     private Mock<IRestClient> _restClientMock;
-    private JToken _payloadSent;
 
     [SetUp]
     public void Setup()

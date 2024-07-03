@@ -164,7 +164,7 @@ public static class IbmMaximo
         return await CustomRequest(input, cancellationToken);
     }
 
-    // <summary>
+    /// <summary>
     /// Updates a work order in IBM Maximo.
     /// </summary>
     /// <param name="input">Input parameters for the work order.</param>
