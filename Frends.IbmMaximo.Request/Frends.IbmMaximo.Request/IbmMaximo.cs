@@ -26,34 +26,58 @@ public static class IbmMaximo
     /// [Documentation](https://tasks.frends.com/tasks/frends-tasks/Frends.IbmMaximo.Request)
     /// </summary>
     /// <param name="input">Input parameters.</param>
+    /// <param name="options">Options parameters.</param>
     /// <param name="cancellationToken">Frends cancellation token.</param>
     /// <returns>Object { bool Success, string Error, dynamic Response }</returns>
     public static async Task<Result> Request(
     [PropertyTab] Input input,
+    [PropertyTab] Options options,
     CancellationToken cancellationToken)
     {
-        switch (input.RequestType)
+        try
         {
-            case RequestTypeChoose.CustomRequest:
-                return await CustomRequest(input, cancellationToken);
-            case RequestTypeChoose.CreateWorkOrder:
-                return await CreateWorkOrder(input, cancellationToken);
-            case RequestTypeChoose.GenerateServiceRequest:
-                return await GenerateServiceRequest(input, cancellationToken);
-            case RequestTypeChoose.GetWorkOrder:
-                return await GetWorkOrder(input, cancellationToken);
-            case RequestTypeChoose.UpdateWorkOrder:
-                return await UpdateWorkOrder(input, cancellationToken);
-            case RequestTypeChoose.DeleteWorkOrder:
-                return await DeleteWorkOrder(input, cancellationToken);
-            case RequestTypeChoose.GetServiceRequest:
-                return await GetServiceRequest(input, cancellationToken);
-            case RequestTypeChoose.UpdateServiceRequest:
-                return await UpdateServiceRequest(input, cancellationToken);
-            case RequestTypeChoose.DeleteServiceRequest:
-                return await DeleteServiceRequest(input, cancellationToken);
-            default:
-                return new Result(false, null, $"Unsupported request type: {input.RequestType}");
+            switch (input.RequestType)
+            {
+                case RequestTypeChoose.CustomRequest:
+                    return await CustomRequest(input, cancellationToken);
+                case RequestTypeChoose.CreateWorkOrder:
+                    return await CreateWorkOrder(input, cancellationToken);
+                case RequestTypeChoose.GenerateServiceRequest:
+                    return await GenerateServiceRequest(input, cancellationToken);
+                case RequestTypeChoose.GetWorkOrder:
+                    return await GetWorkOrder(input, cancellationToken);
+                case RequestTypeChoose.UpdateWorkOrder:
+                    return await UpdateWorkOrder(input, cancellationToken);
+                case RequestTypeChoose.DeleteWorkOrder:
+                    return await DeleteWorkOrder(input, cancellationToken);
+                case RequestTypeChoose.GetServiceRequest:
+                    return await GetServiceRequest(input, cancellationToken);
+                case RequestTypeChoose.UpdateServiceRequest:
+                    return await UpdateServiceRequest(input, cancellationToken);
+                case RequestTypeChoose.DeleteServiceRequest:
+                    return await DeleteServiceRequest(input, cancellationToken);
+                default:
+                    return new Result(false, null, $"Unsupported request type: {input.RequestType}");
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            throw;
+        }
+        catch (Exception ex)
+        {
+            if (options.ThrowErrorOnFailure)
+            {
+                var message = string.IsNullOrEmpty(options.ErrorMessageOnFailure)
+                    ? ex.Message
+                    : options.ErrorMessageOnFailure;
+                throw new Exception(message, ex);
+            }
+
+            var errorMessage = string.IsNullOrEmpty(options.ErrorMessageOnFailure)
+                ? ex.Message
+                : $"{options.ErrorMessageOnFailure}: {ex.Message}";
+            return new Result(false, null, errorMessage);
         }
     }
 
