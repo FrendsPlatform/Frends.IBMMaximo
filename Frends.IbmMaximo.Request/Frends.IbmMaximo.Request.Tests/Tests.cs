@@ -37,7 +37,9 @@ class Tests
             Method = HttpMethod.GET
         };
 
-        var result = await IbmMaximo.Request(input, CancellationToken.None);
+        var options = new Options { ThrowErrorOnFailure = true };
+
+        var result = await IbmMaximo.Request(input, options, CancellationToken.None);
         Assert.IsTrue(result.Success);
         Assert.IsNotNull(result.Response);
         Assert.AreEqual((string)result.Response.hello, "world");

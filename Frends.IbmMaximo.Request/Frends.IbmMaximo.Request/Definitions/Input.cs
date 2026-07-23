@@ -58,6 +58,7 @@ public class Input
     /// <summary>
     /// Select request type to show correct editor for input.
     /// </summary>
+    /// <example>CustomRequest</example>
     public RequestTypeChoose RequestType { get; set; }
 
     /// <summary>
@@ -105,72 +106,84 @@ public class Input
     /// <summary>
     /// Description for the new work order.
     /// </summary>
+    /// <example>Fix HVAC system</example>
     [UIHint(nameof(RequestType), "", RequestTypeChoose.CreateWorkOrder, RequestTypeChoose.UpdateWorkOrder)]
     public string WorkOrderDescription { get; set; }
 
     /// <summary>
     /// Description for the service request.
     /// </summary>
+    /// <example>Request for office equipment</example>
     [UIHint(nameof(RequestType), "", RequestTypeChoose.GenerateServiceRequest, RequestTypeChoose.UpdateServiceRequest)]
     public string ServiceRequestDescription { get; set; }
 
     /// <summary>
     /// The person who reported the issue.
     /// </summary>
+    /// <example>john.doe</example>
     [UIHint(nameof(RequestType), "", RequestTypeChoose.GenerateServiceRequest, RequestTypeChoose.UpdateServiceRequest)]
     public string ReportedBy { get; set; }
 
     /// <summary>
     /// Location for new work order.
     /// </summary>
+    /// <example>PLANT1</example>
     [UIHint(nameof(RequestType), "", RequestTypeChoose.CreateWorkOrder, RequestTypeChoose.UpdateWorkOrder)]
     public string WorkOrderLocation { get; set; }
 
     /// <summary>
     /// Identifies the ticket's location.
     /// </summary>
+    /// <example>OFFICE1</example>
     [UIHint(nameof(RequestType), "", RequestTypeChoose.GenerateServiceRequest, RequestTypeChoose.UpdateServiceRequest)]
     public string ServiceRequestLocation { get; set; }
 
     /// <summary>
     /// Asset number associated with the work order.
     /// </summary>
+    /// <example>ASSET001</example>
     [UIHint(nameof(RequestType), "", RequestTypeChoose.CreateWorkOrder, RequestTypeChoose.UpdateWorkOrder)]
     public string WorkOrderAssetNum { get; set; }
 
     /// <summary>
     /// Asset number associated with the service request.
     /// </summary>
+    /// <example>ASSET002</example>
     [UIHint(nameof(RequestType), "", RequestTypeChoose.GenerateServiceRequest, RequestTypeChoose.UpdateServiceRequest)]
     public string ServiceRequestAssetNum { get; set; }
 
     /// <summary>
     /// Site associated with the work order.
     /// </summary>
+    /// <example>BEDFORD</example>
     [UIHint(nameof(RequestType), "", RequestTypeChoose.CreateWorkOrder, RequestTypeChoose.UpdateWorkOrder)]
     public string Site { get; set; }
 
     /// <summary>
     /// Scheduled start time for the work order.
     /// </summary>
+    /// <example>2024-01-01T08:00:00Z</example>
     [UIHint(nameof(RequestType), "", RequestTypeChoose.CreateWorkOrder, RequestTypeChoose.UpdateWorkOrder)]
     public string ScheduledStart { get; set; }
 
     /// <summary>
     /// Reported date for the breakdown work order.
     /// </summary>
+    /// <example>2024-01-01T00:00:00Z</example>
     [UIHint(nameof(RequestType), "", RequestTypeChoose.CreateWorkOrder, RequestTypeChoose.UpdateWorkOrder)]
     public string ReportedDate { get; set; }
 
     /// <summary>
     /// Reported date for the breakdown work order.
     /// </summary>
+    /// <example>12345</example>
     [UIHint(nameof(RequestType), "", RequestTypeChoose.GetWorkOrder, RequestTypeChoose.UpdateWorkOrder, RequestTypeChoose.DeleteWorkOrder)]
     public string WorkOrderId { get; set; }
 
     /// <summary>
     /// Reported date for the breakdown work order.
     /// </summary>
+    /// <example>67890</example>
     [UIHint(nameof(RequestType), "", RequestTypeChoose.GetServiceRequest, RequestTypeChoose.UpdateServiceRequest, RequestTypeChoose.DeleteServiceRequest)]
     public string ServiceRequestId { get; set; }
 }
